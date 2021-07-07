@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.HistoryFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="@dimen/margin150"
+                android:layout_height="@dimen/margin45"
+                android:layout_margin="@dimen/margin8"
+                android:background="@drawable/textview_background">
+
+                <Spinner
+                    android:id="@+id/sp_incub"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin45"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:padding="@dimen/margin5"
+                    android:focusable="true"
+                    android:entries="@array/history"
+                    android:focusableInTouchMode="true"
+                    android:textSize="@dimen/margin22" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/white_drop"/>
+
+            </RelativeLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/txtStatus"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="@dimen/margin10"-->
+<!--                android:fontFamily="@font/montserrat"-->
+<!--                android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"-->
+<!--                android:drawableTint="@color/color_blue"-->
+<!--                android:drawablePadding="@dimen/margin10"-->
+<!--                android:maxLines="1"-->
+<!--                android:background="@drawable/textview_background"-->
+<!--                android:padding="@dimen/margin10"-->
+<!--                android:text="Incubator 1"-->
+<!--                android:textColor="@color/color_blue"-->
+<!--                android:textSize="@dimen/margin18"-->
+<!--                android:textStyle="bold" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin10"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="@dimen/margin0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:layout_marginRight="@dimen/margin10"
+                    android:layout_weight="0.5"
+                    android:text="From"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/margin15"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="@dimen/margin0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:layout_weight="0.5"
+                    android:text="To"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/margin15"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin5"
+                android:layout_marginTop="@dimen/margin5"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.45"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin10"
+                    android:background="@drawable/footer_backgroud"
+                    android:drawableRight="@drawable/ic_baseline_calendar_today_24"
+                    android:drawableTint="@color/white"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin10"
+                    android:text="20 May 2021"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/margin16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.45"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin10"
+                    android:background="@drawable/footer_backgroud"
+                    android:drawableRight="@drawable/ic_baseline_calendar_today_24"
+                    android:drawableTint="@color/white"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin10"
+                    android:text="25 May 2021"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/margin16"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_animation"
+                android:animateLayoutChanges="true"
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/margin10"
+                android:layout_height="wrap_content"
+                android:src="@drawable/charttt" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

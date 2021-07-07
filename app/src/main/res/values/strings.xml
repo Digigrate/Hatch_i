@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Hatch-I</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="username">User Name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="forget">Forgot Password ? Request New Password</string>
+    <string name="enteremail">Enter Your Email For</string>
+    <string name="enteremail1">Verification Process</string>
+    <string name="email">Enter Email</string>
+    <string name="NewPassword"> Request New Password</string>
+    <string name="Signin">Sign In</string>
+    <string name="cancel">Cancel</string>
+    <string name="NewReq">Request For New</string>
+
+    <string name="cards">Cards</string>
+    <string name="deposits">Deposits</string>
+    <string name="insurance_value">Insurance/value</string>
+    <string name="loans">Loans</string>
+    <string name="history">History</string>
+    <string name="tips">Tips</string>
+    <string name="machineno">Machine No</string>
+    <string name="stepdayhr">Step Day HR</string>
+    <string name="tset">T in (Tset)</string>
+    <string name="rhset">Rh in (Rhset)</string>
+    <string name="fan">Fan (%)</string>
+
+    <string-array name="Machines">
+        <item>Incubator 100</item>
+        <item>Incubator 101</item>
+        <item>Incubator 102</item>
+        <item>Incubator 103</item>
+        <item>Incubator 104</item>
+        <item>Incubator 105</item>
+    </string-array>
+
+    <string-array name="history">
+        <item>Incubator 1</item>
+        <item>Incubator 2</item>
+        <item>Incubator 3</item>
+        <item>Incubator 4</item>
+        <item>Incubator 5</item>
+    </string-array>
+
+    <string-array name="Times">
+        <item>01d 02h 03</item>
+        <item>01d 02h 04</item>
+        <item>01d 03h 05</item>
+        <item>01d 03h 06</item>
+        <item>01d 04h 07</item>
+        <item>01d 04h 08</item>
+    </string-array>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string-array name="items_class">
+        <item>Class 1</item>
+        <item>Class 2</item>
+        <item>Class 3</item>
+        <item>Class 4</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="details">General Tips For Hatching Eggs
+Eggs will only be fertile if a cockerel has mated with the hens. Eggs may still be fertile if they are laid up to 2 weeks after a cockerel is separated from the hens.
+
+Fertile eggs can be stored in a cool place (ideally 10-16 degrees centigrade) for up to two weeks before incubating, although the fresher they are the better the hatch rate will be.
+
+They should be stored on a slant with the pointed end down and rotated regularly - at least once a day.
+
+Fertile chicken eggs take around 21 days to hatch. Some breeds take a little less and some a little longer. If the egg has not hatched after 25 days, it should be removed from the broody hen or incubator.
+
+Eggs need constant heat during the full incubation period for the embryo to develop into a chick. This heat is provided either by a broody hen or incubator. The temperature should be 37.5 degrees centigrade.
+
+The egg will not grow or change shape during incubation.
+
+Sometimes you can see the egg rock or hear cheeping from the egg shortly before it hatches.
+
+The chick will peck a hole through the eggshell (calling pipping) when it is ready to hatch. Do not move the egg or interfere with the egg or chick while the chick is hatching.</string>
+</resources>

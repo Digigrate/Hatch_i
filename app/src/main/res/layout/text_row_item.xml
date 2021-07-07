@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin5"
+    app:cardBackgroundColor="@color/white">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin5"
+        android:layout_margin="@dimen/margin5"
+        android:weightSum="1">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/machineno"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/margin13"
+            android:fontFamily="@font/montserrat"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="@string/username"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stepday"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/margin13"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/username"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tset"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
+            android:fontFamily="@font/montserrat"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/margin13"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/username"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rhset"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/margin13"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/username"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fan"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/margin13"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/username"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin5"
+            android:background="@drawable/textview_background"
+            android:orientation="vertical"
+            android:padding="@dimen/margin0">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/img_temp"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin70"
+                    android:layout_margin="@dimen/margin8"
+                    android:layout_weight="0.40"
+                    android:background="@color/color_blue"
+                    android:padding="@dimen/margin2"
+                    android:src="@drawable/temperature">
+
+                </ImageView>
+
+
+                <LinearLayout
+                    android:layout_width="@dimen/margin0"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin5"
+                    android:layout_weight="0.60"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_mdata"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/margin4"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/username"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/margin14"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_subdata"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/margin20"
+                        android:text="OFF"
+                        android:textSize="@dimen/margin14"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
