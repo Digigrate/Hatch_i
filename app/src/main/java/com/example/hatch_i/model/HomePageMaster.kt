@@ -4,5 +4,9 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
+class HomePageMaster {
 
-data class Login(val email: String, val password: String)
+    @SerializedName("content")
+    @Expose
+    var content: List<Content>? = null
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin4"
+    android:layout_height="wrap_content">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:id="@+id/tbrow"
+            android:weightSum="1"
+            android:padding="2dp">
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="0.20"
+                android:layout_height="@dimen/margin40"
+                android:textSize="@dimen/margin12"
+                android:hint="@string/age"
+                android:padding="@dimen/margin2"
+                android:fontFamily="@font/montserrat"
+                android:singleLine="true"
+                android:gravity="center"
+                android:background="@drawable/textview_background1" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="0.20"
+                android:layout_height="@dimen/margin40"
+                android:textSize="@dimen/margin12"
+                android:gravity="center"
+                android:padding="@dimen/margin2"
+                android:fontFamily="@font/montserrat"
+                android:singleLine="true"
+                android:hint="@string/avgweight"
+                android:background="@drawable/textview_background1" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="0.20"
+                android:layout_height="@dimen/margin40"
+                android:textSize="@dimen/margin12"
+                android:gravity="center"
+                android:singleLine="true"
+                android:padding="@dimen/margin2"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/consumption"
+                android:background="@drawable/textview_background1" />
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="0.20"
+                android:layout_height="@dimen/margin40"
+                android:textSize="@dimen/margin12"
+                android:gravity="center"
+                android:singleLine="true"
+                android:hint="@string/mortality"
+                android:padding="@dimen/margin2"
+                android:background="@drawable/textview_background1"
+                android:fontFamily="@font/montserrat"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="0.20"
+                android:layout_height="@dimen/margin40"
+                android:textSize="@dimen/margin12"
+                android:gravity="center"
+                android:singleLine="true"
+                android:hint="@string/weightgain"
+                android:padding="@dimen/margin2"
+                android:background="@drawable/textview_background1"
+                android:fontFamily="@font/montserrat"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

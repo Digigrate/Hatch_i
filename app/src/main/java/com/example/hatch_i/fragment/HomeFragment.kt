@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hatch_i.R
-import com.example.hatch_i.adapter.DataModel
 import com.example.hatch_i.adapter.HomeAdapter
+import com.example.hatch_i.common.Utils
+import com.example.hatch_i.model.Content
+import com.example.hatch_i.model.HomePageMaster
+import com.google.gson.Gson
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,8 +32,10 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
     lateinit var rv_data: RecyclerView
     internal lateinit var view: View
-    private val dataList = ArrayList<DataModel>()
+    //private val dataList = ArrayList<DataModel>()
     private lateinit var homeAdapter: HomeAdapter
+
+    var dataList: ArrayList<Content> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,14 +91,24 @@ class HomeFragment : Fragment() {
 
 
     private fun prepareHomeData() {
-        var data = DataModel("01", "10", "98(99)", "75(76)", "30%")
-        dataList.add(data)
-        data = DataModel("02", "01", "98(99)", "78(77)", "30%")
-        dataList.add(data)
-        data = DataModel("03", "02", "98(99)", "79(77)", "30%")
-        dataList.add(data)
-        data = DataModel("04", "03", "98(99)", "95(77)", "30%")
-        dataList.add(data)
+        //getHomePageData()
+        var homepageData = Utils.getHomePageData(requireContext())
+        var homepageData1 =
+            Gson().fromJson(
+                homepageData.toString(),
+                HomePageMaster::class.java
+            )
+
+        if (homepageData1.content != null) {
+
+            for (i in 0 until homepageData1.content!!.size) {
+                dataList.add(homepageData1.content!![i])
+            }
+        }
         homeAdapter.notifyDataSetChanged()
     }
+
+
+
+
 }

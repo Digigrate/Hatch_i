@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_subdata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin8"
+        android:padding="@dimen/margin2"
+        android:background="@drawable/textview_background1"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin4"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="0dp"
+                android:textSize="@dimen/margin12"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin2"
+                android:layout_weight="0.33"
+                android:background="@drawable/details_background"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/age"
+                android:maxLines="1"
+                android:padding="@dimen/margin8"
+                android:layout_marginRight="@dimen/margin2"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_avgweight"
+                android:layout_width="0dp"
+                android:layout_marginRight="@dimen/margin1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin2"
+                android:layout_weight="0.33"
+                android:background="@drawable/details_background"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/avgweight"
+                android:maxLines="1"
+                android:textSize="@dimen/margin12"
+                android:padding="@dimen/margin8"
+                android:paddingLeft="@dimen/margin5"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_consumption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin2"
+                android:layout_marginLeft="@dimen/margin1"
+                android:layout_weight="0.34"
+                android:background="@drawable/details_background"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/consumption"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin5"
+                android:padding="@dimen/margin8"
+                android:textSize="@dimen/margin12"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin4"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/et_mortality"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin2"
+                android:layout_marginRight="@dimen/margin2"
+                android:layout_weight="0.5"
+                android:background="@drawable/details_background"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/mortality"
+                android:maxLines="1"
+                android:padding="@dimen/margin8"
+                android:textSize="@dimen/margin12"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/et_weihtgain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin2"
+                android:layout_weight="0.5"
+                android:background="@drawable/details_background"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/weightgain"
+                android:maxLines="1"
+                android:textSize="@dimen/margin12"
+                android:padding="@dimen/margin8"
+                android:layout_marginLeft="@dimen/margin2"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

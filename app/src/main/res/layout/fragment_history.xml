@@ -104,6 +104,7 @@
                 android:weightSum="1">
 
                 <TextView
+                    android:id="@+id/tv_fromdte"
                     android:layout_width="0dp"
                     android:layout_weight="0.45"
                     android:layout_height="wrap_content"
@@ -120,6 +121,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_todte"
                     android:layout_width="0dp"
                     android:layout_weight="0.45"
                     android:layout_height="wrap_content"
@@ -137,13 +139,12 @@
             </LinearLayout>
 
 
-            <ImageView
-                android:id="@+id/iv_animation"
-                android:animateLayoutChanges="true"
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/margin10"
-                android:layout_height="wrap_content"
-                android:src="@drawable/charttt" />
+                android:layout_height="@dimen/margin300"
+                android:layout_margin="32dp"/>
+
 
 
         </LinearLayout>

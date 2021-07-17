@@ -4,17 +4,14 @@
     tools:showIn="navigation_view">
 
     <group
-        android:id="@+id/group_feature"
-
-        android:checkableBehavior="single">
+        android:id="@+id/group_feature">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
     </group>
     <group
-        android:id="@+id/group_featursde"
-        android:checkableBehavior="single">
+        android:id="@+id/group_featursde">
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_baseline_login_24"

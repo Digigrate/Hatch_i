@@ -1,8 +1,8 @@
 package com.example.hatch_i.adapter
 
-class DataModel (machinno: String?, stepday: String?, tset: String?, rhset: String?, fan: String?)
+class DataModel (machinno: Int?, stepday: String?, tset: String?, rhset: String?, fan: String?)
     {
-    private var machinno: String
+    private var machinno: Int
     private var stepday: String
     private var tset: String
         private var rhset: String
@@ -15,34 +15,34 @@ class DataModel (machinno: String?, stepday: String?, tset: String?, rhset: Stri
         this.fan = fan!!
     }
 
-        fun getMachinNo(): String? {
+        fun getMachinNo(): Int? {
             return machinno
         }
-        fun setMachinNo(name: String?) {
-            machinno = name!!
+        fun setMachinNo(name: Int?) {
+            machinno = machinno!!
         }
         fun getStepDay(): String? {
             return stepday
         }
         fun setStepDay(year: String?) {
-            this.stepday = year!!
+            this.stepday = stepday!!
         }
         fun getTset(): String? {
             return tset
         }
         fun setTset(genre: String?) {
-            this.tset = genre!!
+            this.tset = tset!!
         }
         fun getRhSet(): String? {
             return rhset
         }
         fun setRhSet(year: String?) {
-            this.rhset = year!!
+            this.rhset = rhset!!
         }
         fun getFan(): String? {
             return fan
         }
         fun setFan(genre: String?) {
-            this.fan = genre!!
+            this.fan = fan!!
         }
 }

@@ -1,11 +1,11 @@
 package com.example.hatch_i.activity
 
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -17,21 +17,14 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.garinnoglobal.fragment.DetailsFragment
 import com.example.hatch_i.R
-import com.example.hatch_i.apiclient.ApiClient
 import com.example.hatch_i.common.Utils
-import com.example.hatch_i.fragment.HistoryFragment
-import com.example.hatch_i.fragment.HomeFragment
-import com.example.hatch_i.fragment.NotificationFragment
-import com.example.hatch_i.fragment.TipsFragment
-import com.example.hatch_i.model.Login
+import com.example.hatch_i.fragment.*
+import com.example.hatch_i.storageHelpers.PreferenceHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -39,23 +32,33 @@ class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var navView: NavigationView
     var actionBarDrawerToggle: ActionBarDrawerToggle? = null
+    lateinit var tv_username: TextView
+     var name: String? = "asd"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
-        setSupportActionBar(toolbar)
+
         actionBarDrawerToggle =
-            ActionBarDrawerToggle(this, drawerLayout,R.string.nav_open, R.string.nav_close)
+            ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
         drawerLayout.addDrawerListener(actionBarDrawerToggle!!)
         actionBarDrawerToggle!!.syncState()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
+        assert(navView != null)
+        navView.setNavigationItemSelectedListener(this@MainActivity)
         initClickListeners()
         addFragment(HomeFragment(), false, HomeFragment::class.java.simpleName)
-        getData()
+        val headerView: View = navView.getHeaderView(0)
+        tv_username = headerView.findViewById(R.id.tv_username)
+        name = PreferenceHelper.getStringPreference(this@MainActivity,"username")
+        tv_username.setText("Hi "+name)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,31 +84,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return if (actionBarDrawerToggle!!.onOptionsItemSelected(item)) {
-//            true
-//        } else super.onOptionsItemSelected(item)
-//
-//    }
 
-    private fun getData() {
-        val call: Call<List<Login>> = ApiClient.getClient.getLogininfo()
-        call.enqueue(object : Callback<List<Login>> {
-
-            override fun onResponse(call: Call<List<Login>>?, response: Response<List<Login>>?) {
-                Log.e("Respponse",response.toString())
-            //    progerssProgressDialog.dismiss()
-             //   dataList.addAll(response!!.body()!!)
-              //  recyclerView.adapter.notifyDataSetChanged()
-            }
-
-            override fun onFailure(call: Call<List<Login>>?, t: Throwable?) {
-                Log.e("Failure",t.toString())
-                //progerssProgressDialog.dismiss()
-            }
-
-        })
-    }
 
     fun addFragment(fragment: Fragment, addToBackStack: Boolean, tag: String) {
         val manager: FragmentManager = supportFragmentManager
@@ -117,13 +96,15 @@ class MainActivity : AppCompatActivity() {
         ft.replace(R.id.frame_container, fragment, tag)
         ft.commitAllowingStateLoss()
     }
-    public fun setFragment(){
+
+    public fun setFragment() {
         addFragment(
             DetailsFragment(),
             true,
             DetailsFragment::class.java.simpleName
         )
     }
+
     private fun initClickListeners() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -143,9 +124,9 @@ class MainActivity : AppCompatActivity() {
                     bottomNavigationView.getMenu().getItem(1)
                         .setIcon(R.drawable.details)
                     addFragment(
-                        DetailsFragment(),
+                        DetailsListFragment(),
                         true,
-                        DetailsFragment::class.java.simpleName
+                        DetailsListFragment::class.java.simpleName
                     )
 
                 }
@@ -175,8 +156,49 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_home -> {
+                bottomNavigationView.selectedItemId = R.id.action_home
+                addFragment(
+                    HomeFragment(),
+                    true,
+                    HomeFragment::class.java.simpleName
+                )
+                drawerLayout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.nav_logout -> {
+                Utils.showDialog(
+                    "Are you sure you want to logout?",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        when (which) {
+                            DialogInterface.BUTTON_POSITIVE -> {
+                                dialog.dismiss()
+                                Utils.logoutclearperf(this@MainActivity)
+                            }
+                            DialogInterface.BUTTON_NEGATIVE -> {
+                                dialog.dismiss()
+                            }
+                        }
+                    }, this
+                )
+                return true
+            }
+        }
+        return actionBarDrawerToggle!!.onOptionsItemSelected(item)
+    }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+            bottomNavigationView.selectedItemId = R.id.action_home
+        } else if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers()
+        } else {
+            finishAffinity()
+        }
+    }
 }
