@@ -202,7 +202,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data0"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -270,7 +270,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data1"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -347,7 +347,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data2"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -415,7 +415,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data3"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -492,7 +492,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data4"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -560,7 +560,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data5"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -638,7 +638,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data6"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -706,7 +706,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data7"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -783,7 +783,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data8"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -851,7 +851,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data9"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -867,12 +867,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="@dimen/margin20"
+                                    android:padding="@dimen/margin2"
                                     android:gravity="center"
                                     android:text="OFF"
+                                    android:background="@drawable/rounded_corner_view"
                                     android:textSize="@dimen/margin14"
                                     android:textStyle="bold">
-
                                 </TextView>
+
 
 
                             </LinearLayout>
@@ -928,7 +930,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data10"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"
@@ -945,7 +947,9 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="@dimen/margin20"
                                     android:gravity="center"
+                                    android:padding="@dimen/margin2"
                                     android:text="OFF"
+                                    android:background="@drawable/rounded_corner_view1"
                                     android:textSize="@dimen/margin14"
                                     android:textStyle="bold">
 
@@ -996,7 +1000,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_data11"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="@dimen/margin4"

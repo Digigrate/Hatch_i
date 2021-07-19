@@ -382,8 +382,16 @@ class DetailsFragment : Fragment() {
         tv_subdata6.setText(subDataList[0].co2)
         tv_subdata7.setText(subDataList[0].damper)
         tv_subdata8.setText(subDataList[0].cooling_coil)
-        tv_subdata9.setText(subDataList[0].humidifier)
-        tv_subdata10.setText(subDataList[0].power)
+        if(subDataList[0].humidifier.equals("1")){
+            tv_subdata9.setText("ON")
+        }else{
+            tv_subdata9.setText("OFF")
+        }
+        if(subDataList[0].power.equals("1")){
+            tv_subdata10.setText("ON")
+        }else{
+            tv_subdata10.setText("OFF")
+        }
         tv_subdata11.setText(subDataList[0].door)
 
         tv_data0.setText("Set Temp")
@@ -416,11 +424,11 @@ class DetailsFragment : Fragment() {
         tv_data9.setText("Humidfier")
         img9.setImageResource(R.drawable.humid)
         tv_subdata9.setTextColor(Color.parseColor("#FFFFFFFF"))
-        tv_subdata9.setBackgroundColor(Color.parseColor("#FF274F"))
+      //  tv_subdata9.setBackgroundColor(Color.parseColor("#FF274F"))
         tv_data10.setText("Power")
         img10.setImageResource(R.drawable.powwer)
         tv_subdata10.setTextColor(Color.parseColor("#FFFFFFFF"))
-        tv_subdata10.setBackgroundColor(Color.parseColor("#03DAC6"))
+       // tv_subdata10.setBackgroundColor(Color.parseColor("#03DAC6"))
         tv_data11.setText("Door")
         img11.setImageResource(R.drawable.door)
         tv_subdata11.setTextColor(Color.parseColor("#356EAE"))
