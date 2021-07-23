@@ -4,5 +4,7 @@
     <style name="NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar"/>
     <style name="spinnerTheme">
         <item name="android:fontFamily">@font/montserrat</item>
+        <item name="colorPrimary">@color/color_blue</item>
+        <item name="colorPrimaryDark">@color/color_blue</item>
     </style>
 </resources>
