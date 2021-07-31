@@ -10,11 +10,10 @@ import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.hatch_i.R
-import com.example.hatch_i.common.Utils
 import com.example.hatch_i.model.Content
-import com.example.hatch_i.model.HomePageMaster
 import com.example.hatch_i.storageHelpers.PreferenceHelper
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,15 +35,18 @@ class DetailsFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     internal lateinit var view: View
-    var machineId: Int? = 0
+    var machineId: String? = ""
     var machineName: String? = "aa"
     var selectedId: Int? = 0
     var selectedId1: Int? = 0
     private val cubatorList = ArrayList<Any>()
+    val sIds = ArrayList<Any>()
     private val timediffrentList = ArrayList<Any>()
     private val subDataList = ArrayList<Content>()
     var dataList: ArrayList<Content> = arrayListOf()
-    var seletedvalue: String? = ""
+    var dataListdistinct: ArrayList<Content> = arrayListOf()
+    var strProductsForYouList = ""
+    lateinit var progressBar: ProgressBar
     lateinit var img0: ImageView
     lateinit var img1: ImageView
     lateinit var img2: ImageView
@@ -105,51 +107,47 @@ class DetailsFragment : Fragment() {
         view = inflater.inflate(R.layout.fragment_details, container, false)
         initView(view)
         (activity as AppCompatActivity).supportActionBar?.title = "Incubation Details"
-        machineId = PreferenceHelper.getIntegerPreference(context, "machineId", machineId!!)
+        machineId = PreferenceHelper.getStringPreference(context, "machineId")
         machineName = PreferenceHelper.getStringPreference(context, "machinename")
+        strProductsForYouList =
+            PreferenceHelper.getStringPreference(requireContext(), "STR_PRODUCTS_FOR_YOU_LIST")
+                .toString()
+        println(strProductsForYouList)
+        var gson: Gson? = Gson()
+        var featuresListType = object : TypeToken<ArrayList<Content?>?>() {}.type
+        dataList = gson!!.fromJson(strProductsForYouList, featuresListType)
         getDropDownOfIncubator()
-        prepareDetailsData()
         return view
     }
 
     private fun getDropDownOfIncubator() {
-        var homepageData = Utils.getHomePageData(requireContext())
-        var homepageData1 =
-            Gson().fromJson(
-                homepageData.toString(),
-                HomePageMaster::class.java
-            )
-
-        if (homepageData1.content != null) {
-
-            for (i in 0 until homepageData1.content!!.size) {
-                //if(homepageData1.content!![0].id == machineId){
-                cubatorList.add(homepageData1.content!![i].name.toString())
-                // }
+        for (i in 0 until dataList!!.size) {
+            if (dataList!![i].device_id!!.equals(machineId)) {
+                cubatorList.add(dataList!![i].name.toString())
             }
-            timediffrentList.clear()
-            for (i in 0 until homepageData1.content!!.size) {
+        }
+        timediffrentList.clear()
+        for (i in 0 until dataList!!.size) {
+            if (dataList!![i].device_id!!.equals(machineId)) {
                 val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 try {
-                    val date1 =
-                        simpleDateFormat.parse(homepageData1.content!![i].created_at.toString())
-                    //val currentDate = Date()
+                    val date1 = simpleDateFormat.parse(dataList!![i].created_at.toString())
                     val c = Calendar.getInstance().time
                     println("Current time => $c")
                     val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
                     val formattedDate = df.format(c)
                     val date2 = simpleDateFormat.parse(formattedDate.toString())
-                    printDifference(date1, date2)
+                    printDifference(date1, date2,dataList!![i].id)
                 } catch (e: ParseException) {
                     e.printStackTrace()
                 }
-            }
 
+            }
         }
 
     }
 
-    fun printDifference(startDate: Date, endDate: Date) {
+    fun printDifference(startDate: Date, endDate: Date, dev_id: Int?) {
         //
         //milliseconds
         var different = endDate.time - startDate.time
@@ -174,6 +172,7 @@ class DetailsFragment : Fragment() {
         var timediff =
             elapsedDays.toString() + "d " + elapsedHours.toString() + "h " + elapsedMinutes.toString() + "m"
         timediffrentList.add(timediff)
+        sIds.add(dev_id!!)
 
     }
 
@@ -186,7 +185,7 @@ class DetailsFragment : Fragment() {
 
         val aa: ArrayAdapter<*> = ArrayAdapter<Any?>(
             requireContext(), R.layout.custom_spinner,
-            cubatorList as List<Any?>
+            cubatorList.distinct()
         )
 
 
@@ -209,27 +208,6 @@ class DetailsFragment : Fragment() {
                 id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.WHITE)
-
-                if (!one_click) {
-                    for (i in 0 until cubatorList.size) {
-                        if (machineName.equals(cubatorList.get(i).toString())) {
-                            i == sp_incub.selectedItemId.toInt()
-                            sp_incub.setSelection(i)
-                            sp_time.setSelection(i)
-                        }
-                    }
-                    one_click = true
-                } else {
-
-                    machineName = parent.selectedItem.toString()
-                    getSubDataValues(machineName!!)
-                    //parent.id
-                    selectedId = parent.selectedItemId.toInt()
-                    if (selectedId != null) {
-                        //  val spinnerPosition: Int = aa1.getPosition(selectedId)
-                        sp_time.setSelection(selectedId!!)
-                    }
-                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -245,15 +223,10 @@ class DetailsFragment : Fragment() {
                 id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.WHITE)
-                if (one_click) {
-                    selectedId1 = parent.selectedItemId.toInt()
-                    if (selectedId1 != null) {
-                        sp_incub.setSelection(selectedId1!!)
-                    }
-
-                }
-
-
+                println("List Distinct"+sIds.get(position).toString())
+                println("List Distinct"+sIds.get(position).toString())
+                progressBar.visibility = View.VISIBLE
+                getSubDataValues(sIds.get(position).toString())
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -282,7 +255,7 @@ class DetailsFragment : Fragment() {
     }
 
     fun initView(view: View) {
-
+        progressBar = view.findViewById(R.id.progressBar)
         datemach = view.findViewById(R.id.datemach)
         timemach = view.findViewById(R.id.timemach)
         val c = Calendar.getInstance().time
@@ -335,43 +308,13 @@ class DetailsFragment : Fragment() {
 
     }
 
-    private fun prepareDetailsData() {
-
-        //getHomePageData()
-        var homepageData = Utils.getHomePageData(requireContext())
-        var homepageData1 =
-            Gson().fromJson(
-                homepageData.toString(),
-                HomePageMaster::class.java
-            )
-
-        if (homepageData1.content != null) {
-
-            for (i in 0 until homepageData1.content!!.size) {
-                dataList.add(homepageData1.content!![i])
-            }
-        }
-
-        getSubDataValues("dataoncreate")
-
-    }
-
     private fun getSubDataValues(seletedvalue: String) {
         subDataList.clear()
-        if (seletedvalue.equals("dataoncreate")) {
-            for (i in 0 until dataList!!.size) {
-                if (dataList[i].id == machineId) {
+        for (i in 0 until dataList!!.size) {
+                if (dataList[i].id!!.toString().equals(seletedvalue)) {
                     subDataList.add(dataList!![i])
                 }
             }
-        } else {
-            for (i in 0 until dataList!!.size) {
-                if (dataList[i].name.equals(seletedvalue)) {
-                    subDataList.add(dataList!![i])
-                }
-            }
-
-        }
 
         tv_subdata0.setText(subDataList[0].set_temp + "\u2109")
         tv_subdata1.setText(subDataList[0].machine_temp + "\u2109")
@@ -382,18 +325,17 @@ class DetailsFragment : Fragment() {
         tv_subdata6.setText(subDataList[0].co2)
         tv_subdata7.setText(subDataList[0].damper)
         tv_subdata8.setText(subDataList[0].cooling_coil)
-        if(subDataList[0].humidifier.equals("1")){
+        if (subDataList[0].humidifier.equals("1")) {
             tv_subdata9.setText("ON")
-        }else{
+        } else {
             tv_subdata9.setText("OFF")
         }
-        if(subDataList[0].power.equals("1")){
+        if (subDataList[0].power.equals("1")) {
             tv_subdata10.setText("ON")
-        }else{
+        } else {
             tv_subdata10.setText("OFF")
         }
         tv_subdata11.setText(subDataList[0].door)
-
         tv_data0.setText("Set Temp")
         img0.setImageResource(R.drawable.tempnor)
         tv_subdata0.setTextColor(Color.parseColor("#D73729"))
@@ -424,14 +366,15 @@ class DetailsFragment : Fragment() {
         tv_data9.setText("Humidfier")
         img9.setImageResource(R.drawable.humid)
         tv_subdata9.setTextColor(Color.parseColor("#FFFFFFFF"))
-      //  tv_subdata9.setBackgroundColor(Color.parseColor("#FF274F"))
+        //  tv_subdata9.setBackgroundColor(Color.parseColor("#FF274F"))
         tv_data10.setText("Power")
         img10.setImageResource(R.drawable.powwer)
         tv_subdata10.setTextColor(Color.parseColor("#FFFFFFFF"))
-       // tv_subdata10.setBackgroundColor(Color.parseColor("#03DAC6"))
+        // tv_subdata10.setBackgroundColor(Color.parseColor("#03DAC6"))
         tv_data11.setText("Door")
         img11.setImageResource(R.drawable.door)
         tv_subdata11.setTextColor(Color.parseColor("#356EAE"))
+        progressBar.visibility = View.GONE
     }
 
 

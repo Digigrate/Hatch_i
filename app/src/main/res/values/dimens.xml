@@ -102,4 +102,5 @@
     <dimen name="radius_5">5dp</dimen>
     <dimen name="dimen_58dp">58dp</dimen>
     <dimen name="margin54">54dp</dimen>
+    <dimen name="margin500">400dp</dimen>
 </resources>

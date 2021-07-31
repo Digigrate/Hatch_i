@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_root_history_view"
     tools:context=".fragment.HistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,8 +19,8 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/margin150"
-                android:layout_height="@dimen/margin45"
                 android:layout_margin="@dimen/margin8"
+                android:layout_height="wrap_content"
                 android:background="@drawable/textview_background">
 
                 <Spinner
@@ -28,21 +29,21 @@
                     android:layout_height="@dimen/margin45"
                     android:background="@null"
                     android:gravity="center"
-                    android:padding="@dimen/margin5"
                     android:focusable="true"
-                    android:entries="@array/history"
-                    android:focusableInTouchMode="true"
-                    android:textSize="@dimen/margin22" />
+                    android:entries="@array/Machines"
+                    android:textColor="@color/white"
+                    android:focusableInTouchMode="true"/>
 
                 <ImageView
                     android:layout_width="22dp"
-                    android:layout_height="45dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/white_drop"/>
 
             </RelativeLayout>
+
 
 <!--            <TextView-->
 <!--                android:id="@+id/txtStatus"-->
@@ -114,7 +115,6 @@
                     android:drawableTint="@color/white"
                     android:maxLines="1"
                     android:padding="@dimen/margin10"
-                    android:text="20 May 2021"
                     android:textColor="@color/white"
                     android:textSize="@dimen/margin16"
                     android:textStyle="bold" />
@@ -131,7 +131,6 @@
                     android:drawableTint="@color/white"
                     android:maxLines="1"
                     android:padding="@dimen/margin10"
-                    android:text="25 May 2021"
                     android:textColor="@color/white"
                     android:textSize="@dimen/margin16"
                     android:textStyle="bold" />
@@ -142,8 +141,10 @@
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/lineChart"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin300"
-                android:layout_margin="32dp"/>
+                android:layout_height="@dimen/margin500"
+                android:layout_marginLeft="@dimen/margin20"
+                android:layout_marginBottom="56dp"
+                android:layout_marginRight="@dimen/margin20"/>
 
 
 
@@ -152,4 +153,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

@@ -6,6 +6,6 @@
     android:textColor="#0E0E0E"
     android:padding="@dimen/margin8"
     android:textStyle="bold"
-    android:textSize="@dimen/margin14"
+    android:textSize="@dimen/margin16"
     android:text="@string/weightgain"
     android:fontFamily="@font/montserrat"/>

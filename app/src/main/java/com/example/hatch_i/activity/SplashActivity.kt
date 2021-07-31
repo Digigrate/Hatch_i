@@ -2,11 +2,13 @@ package com.example.hatch_i.activity
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import com.example.hatch_i.R
 import com.example.hatch_i.common.Utils
 import com.example.hatch_i.storageHelpers.PreferenceHelper
@@ -25,6 +27,9 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.splash_activity_main)
      //   supportActionBar?.setDisplayShowTitleEnabled(false)
      //   supportActionBar?.elevation = 0f
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = ContextCompat.getColor(this, R.color.color_blue)
+        }
         rl_root_view = findViewById(R.id.rl_root_view)
         if(!Utils.isConnectingToInternet(this@SplashActivity)) {
             Utils.showIndefiniteSnackBar(

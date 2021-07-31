@@ -33,7 +33,7 @@ internal class HomeAdapter(
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = dataList[position]
-        holder.machinno.text = data.id.toString()
+        holder.machinno.text = data.device_id
         holder.stepday.text = "00"
         holder.tset.text = data.set_temp+"("+data.machine_temp+")"
         holder.rhset.text = data.set_humidity+"("+data.machine_humidity+")"
@@ -43,9 +43,9 @@ internal class HomeAdapter(
             val mainActivity: MainActivity? =
                 it.context as MainActivity?
             mainActivity!!.setFragment()
-            var id =  data.id
+            var id =  data.device_id
             var mname =  data.name
-            PreferenceHelper.setIntegerPreference(it.context, "machineId", id!!)
+            PreferenceHelper.setStringPreference(it.context, "machineId", id!!)
             PreferenceHelper.setStringPreference(it.context, "machinename", mname!!)
 
         })

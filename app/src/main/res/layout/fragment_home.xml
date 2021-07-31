@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/ll_root_home_view"
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -73,6 +75,8 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_data"
             android:layout_width="match_parent"
@@ -81,9 +85,17 @@
             android:padding="@dimen/margin5">
 
 
+
         </androidx.recyclerview.widget.RecyclerView>
 
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </FrameLayout>

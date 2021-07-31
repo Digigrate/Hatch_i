@@ -13,7 +13,8 @@
         android:icon="@drawable/details"
         android:title="Details"
         android:checked="false"
-        app:showAsAction="always"/>
+        android:visible="false"
+        app:showAsAction="never"/>
 
 
     <item

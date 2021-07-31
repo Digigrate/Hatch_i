@@ -4,17 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hatch_i.R
 import com.example.hatch_i.adapter.HomeAdapter
+import com.example.hatch_i.apiclient.ApiInterface
 import com.example.hatch_i.common.Utils
 import com.example.hatch_i.model.Content
 import com.example.hatch_i.model.HomePageMaster
+import com.example.hatch_i.storageHelpers.PreferenceHelper
 import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,10 +42,15 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
     lateinit var rv_data: RecyclerView
     internal lateinit var view: View
+    lateinit var ll_root_home_view : FrameLayout
     //private val dataList = ArrayList<DataModel>()
     private lateinit var homeAdapter: HomeAdapter
+    lateinit var progressBar: ProgressBar
+    lateinit var content: ArrayList<Content>
+    var status:String? = null
 
     var dataList: ArrayList<Content> = arrayListOf()
+    var dataListdistinct: ArrayList<Content> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +67,61 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false)
         (activity as AppCompatActivity).supportActionBar?.title = "Home"
+        ll_root_home_view = view.findViewById<FrameLayout>(R.id.ll_root_home_view)
         initView(view)
-        prepareHomeData()
+        getHomePageDataAPI()
         return view
+    }
+
+    private fun getHomePageDataAPI() {
+        progressBar.visibility=View.VISIBLE
+        try {
+            if (Utils.isConnectingToInternet(requireContext())) {
+                val retIn = ApiInterface.RetrofitInstance.getRetrofitInstance()
+                    .create(ApiInterface::class.java)
+                retIn.getHomePageData().enqueue(object : Callback<HomePageMaster> {
+                    override fun onFailure(call: Call<HomePageMaster>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<HomePageMaster>,
+                        response: Response<HomePageMaster>
+                    ) {
+                        if (response.code() == 200) {
+                            progressBar.visibility=View.VISIBLE
+                            val responseBody: HomePageMaster? = response.body()
+                            if (responseBody != null) {
+                                status = responseBody.status.toString()
+                                content = (responseBody.content as ArrayList<Content>?)!!
+                                println(content)
+                                println(status)
+                                prepareHomeData(content!!)
+                                val productsForYouList = content?: listOf()
+                                val strProductsForYouList = Gson().toJson(productsForYouList)
+                                PreferenceHelper.setStringPreference(requireContext(),"STR_PRODUCTS_FOR_YOU_LIST",strProductsForYouList)
+                                println(productsForYouList)
+                            }
+                        }else{
+                            progressBar.visibility=View.GONE
+                            Utils.showIndefiniteSnackBar(
+                                ll_root_home_view,
+                                response.message()
+                            )
+                        }
+                    }
+                })
+            }else{
+                progressBar.visibility=View.GONE
+                Utils.showIndefiniteSnackBar(
+                    ll_root_home_view,
+                    "You're offline, Please check your network connection."
+                )
+            }
+        } catch (err: Exception) {
+            err.printStackTrace()
+        }
+
     }
 
     companion object {
@@ -78,34 +145,28 @@ class HomeFragment : Fragment() {
     }
 
     fun initView(view: View) {
-
+        progressBar = view.findViewById(R.id.progressBar)
         rv_data = view.findViewById<RecyclerView>(R.id.rv_data)
-        homeAdapter = HomeAdapter(dataList)
-        val layoutManager = LinearLayoutManager(context)
-        rv_data.layoutManager = layoutManager
-        rv_data.itemAnimator = DefaultItemAnimator()
-        rv_data.adapter = homeAdapter
+
 
     }
 
 
 
-    private fun prepareHomeData() {
-        //getHomePageData()
-        var homepageData = Utils.getHomePageData(requireContext())
-        var homepageData1 =
-            Gson().fromJson(
-                homepageData.toString(),
-                HomePageMaster::class.java
-            )
+    private fun prepareHomeData(content: ArrayList<Content>) {
 
-        if (homepageData1.content != null) {
-
-            for (i in 0 until homepageData1.content!!.size) {
-                dataList.add(homepageData1.content!![i])
+            for (i in 0 until content!!.size) {
+                dataList.add(content!![i])
             }
-        }
+            dataListdistinct = dataList.distinctBy { it.device_id } as ArrayList<Content>
+            println("List Distinct"+dataList.distinctBy { it.device_id }.toString())
+            homeAdapter = HomeAdapter(dataListdistinct)
+            val layoutManager = LinearLayoutManager(context)
+            rv_data.layoutManager = layoutManager
+            rv_data.itemAnimator = DefaultItemAnimator()
+            rv_data.adapter = homeAdapter
         homeAdapter.notifyDataSetChanged()
+        progressBar.visibility=View.GONE
     }
 
 

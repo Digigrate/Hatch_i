@@ -10,15 +10,16 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.example.hatch_i.R
 import com.example.hatch_i.activity.LoginActivity
-import com.example.hatch_i.activity.MainActivity
 import com.example.hatch_i.storageHelpers.PreferenceHelper
 import com.google.android.material.snackbar.Snackbar
-import okhttp3.internal.Util
 import java.io.IOException
+
 
 object Utils {
 
@@ -37,6 +38,8 @@ object Utils {
     const val PATTERN_START_WITH_MONTH_SHORT_NO_YEAR = "MMM dd"
     const val PATTERN_START_WITH_MONTH_WITH_TIME = "MMM dd, yyyy HH:mm:ss"
     const val PATTERN_START_WITH_MONTH_SMALL_NO_YEAR = "MMM dd"
+
+
 
     @SuppressLint("MissingPermission")
     fun isConnectingToInternet(context: Context): Boolean {
@@ -153,4 +156,8 @@ object Utils {
 
         return homepageData
     }
+
+
+
+
 }
